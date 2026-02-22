@@ -31,5 +31,6 @@ wandb>=0.15.0
 optuna>=3.2.0
 
 # Bioinformatics Utilities
-mmseqs2-python  # For clustering sequences
-bioservices     # For UniProt/Ensembl API access
+# mmseqs2 - install via: !apt-get install -y mmseqs2 (not pip installable)
+# cd-hit - install via: !apt-get install -y cd-hit (not pip installable)
+bioservices

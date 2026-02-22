@@ -1,0 +1,30 @@
+paths:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  splits_dir: "data/splits"
+  metadata_file: "phi-base_current.csv"
+  fasta_file: "phi-base_current.fas"
+
+target_mapping:
+  "Loss of pathogenicity": 0
+  "Reduced virulence": 1
+  "Increased virulence (hypervirulence)": 2
+  "Unaffected pathogenicity": 3
+  "Effector": 4
+
+filtering:
+  min_seq_length: 50
+  max_seq_length: 1500
+  ambiguity: 0.0
+
+clustering:
+  identity_threshold: 0.9
+
+tokenization:
+  esm_model: "facebook/esm2_t30_150M_UR50D"
+  max_token_length: 1024
+
+splitting:
+  test_size: 0.2
+  val_size: 0.1
+  random_seed: 42
