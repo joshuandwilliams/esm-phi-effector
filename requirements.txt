@@ -1,0 +1,35 @@
+# Core Scientific Stack
+numpy>=1.23.0
+pandas>=2.0.0
+biopython>=1.81
+scipy>=1.10.0
+scikit-learn>=1.2.0
+
+# Plotting & Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.13.0
+
+# Machine Learning (PyTorch & JAX)
+torch>=2.0.0
+torchvision>=0.15.0
+jax>=0.4.0
+jaxlib>=0.4.0
+flax>=0.7.0
+optax>=0.1.5
+
+# Hugging Face Ecosystem (ESM-2 & LoRA)
+transformers>=4.30.0
+datasets>=2.12.0
+accelerate>=0.20.0
+peft>=0.4.0
+evaluate>=0.4.0
+
+# Cloud & Tracking
+google-cloud-storage>=2.9.0
+wandb>=0.15.0
+optuna>=3.2.0
+
+# Bioinformatics Utilities
+mmseqs2-python  # For clustering sequences
+bioservices     # For UniProt/Ensembl API access
