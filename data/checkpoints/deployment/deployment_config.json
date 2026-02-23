@@ -1,0 +1,62 @@
+{
+  "model": {
+    "base_model": "facebook/esm2_t30_150M_UR50D",
+    "hidden_dim": 640,
+    "num_classes": 8,
+    "layer_1_dim": 256,
+    "layer_2_dim": 128,
+    "dropout_rate": 0.1,
+    "pooling": "mean"
+  },
+  "lora": {
+    "rank": 16,
+    "alpha": 32,
+    "dropout": 0.1,
+    "target_modules": [
+      "query",
+      "key",
+      "value",
+      "dense"
+    ],
+    "bias": "none"
+  },
+  "training": {
+    "learning_rate": 0.0002,
+    "num_epochs": 20,
+    "batch_size": 8,
+    "gradient_accumulation_steps": 2,
+    "warmup_ratio": 0.1,
+    "lr_scheduler_type": "cosine",
+    "class_weighting": true
+  },
+  "label_mapping": {
+    "Effector": 0,
+    "Transcription factor / Regulator": 1,
+    "Kinase / Signalling": 2,
+    "Protease": 3,
+    "Cell wall / Carbohydrate-active": 4,
+    "Transporter / Membrane": 5,
+    "Secondary metabolite / Biosynthesis": 6,
+    "Secretion system": 7
+  },
+  "performance": {
+    "frozen_baseline": {
+      "accuracy": 0.752,
+      "macro_f1": 0.711,
+      "weighted_f1": 0.757
+    },
+    "lora_finetuned": {
+      "accuracy": 0.8009,
+      "macro_f1": 0.7605,
+      "weighted_f1": 0.8016
+    }
+  },
+  "dataset": {
+    "source": "PHI-base",
+    "total_seqs": 4518,
+    "train_seqs": 3614,
+    "val_seqs": 452,
+    "test_seqs": 452,
+    "split": "80/10/10"
+  }
+}

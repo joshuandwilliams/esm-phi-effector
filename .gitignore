@@ -205,3 +205,9 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# LoRA checkpoint safetensors
+data/checkpoints/lora_finetune/checkpoint-*/model.safetensors
+
+# Weights & Biases
+wandb/

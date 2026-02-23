@@ -1,0 +1,40 @@
+lora:
+  rank: 16                    # Low-rank dimension - controls adaptation capacity
+  alpha: 32                   # Scaling factor (2x rank)
+  dropout: 0.1                # LoRA dropout rate
+  target_modules:             # ESM-2 specific module names
+    - "query"
+    - "key"
+    - "value"
+    - "dense"
+  bias: "none"
+
+training:
+  num_epochs: 20
+  per_device_train_batch_size: 8
+  per_device_eval_batch_size: 16
+  gradient_accumulation_steps: 2   # Effective batch size = 8x2 = 16
+  learning_rate: 2.0e-4
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+  lr_scheduler_type: "cosine"
+  fp16: true
+  early_stopping_patience: 3
+  early_stopping_threshold: 0.001
+
+evaluation:
+  strategy: "epoch"
+  save_strategy: "epoch"
+  save_total_limit: 3
+  metric_for_best_model: "eval_f1_macro"
+  greater_is_better: true
+  load_best_model_at_end: true
+
+logging:
+  steps: 50
+  report_to: "wandb"
+  project_name: "esm-phi-effector"
+
+paths:
+  output_dir: "data/checkpoints/lora_finetune"
+  deployment_dir: "data/checkpoints/deployment"
