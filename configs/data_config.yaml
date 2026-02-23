@@ -6,25 +6,30 @@ paths:
   fasta_file: "phi-base_current.fas"
 
 target_mapping:
-  "Loss of pathogenicity": 0
-  "Reduced virulence": 1
-  "Increased virulence (hypervirulence)": 2
-  "Unaffected pathogenicity": 3
-  "Effector": 4
+  "Effector": 0
+  "Transcription factor / Regulator": 1
+  "Kinase / Signalling": 2
+  "Protease": 3
+  "Cell wall / Carbohydrate-active": 4
+  "Transporter / Membrane": 5
+  "Secondary metabolite / Biosynthesis": 6
+  "Secretion system": 7
 
 filtering:
   min_seq_length: 50
   max_seq_length: 1500
-  ambiguity: 0.0
+  max_ambiguity_fraction: 0.05
 
 clustering:
+  tool: "mmseqs2"
   identity_threshold: 0.9
+  coverage_threshold: 0.8
 
 tokenization:
   esm_model: "facebook/esm2_t30_150M_UR50D"
   max_token_length: 1024
 
 splitting:
-  test_size: 0.2
+  test_size: 0.1
   val_size: 0.1
   random_seed: 42
