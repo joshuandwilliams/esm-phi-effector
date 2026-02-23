@@ -1,0 +1,84 @@
+{
+  "project": "esm-phi-effector",
+  "description": "LoRA fine-tuned ESM-2 for PHI-base functional class classification",
+  "timestamp": "2026-02-23 23:08:46",
+  "dataset": {
+    "source": "PHI-base",
+    "total_seqs": 4518,
+    "n_classes": 8,
+    "class_mapping": {
+      "Effector": 0,
+      "Transcription factor / Regulator": 1,
+      "Kinase / Signalling": 2,
+      "Protease": 3,
+      "Cell wall / Carbohydrate-active": 4,
+      "Transporter / Membrane": 5,
+      "Secondary metabolite / Biosynthesis": 6,
+      "Secretion system": 7
+    },
+    "split": "80/10/10"
+  },
+  "performance": {
+    "frozen_baseline": {
+      "accuracy": 0.752,
+      "macro_f1": 0.711,
+      "weighted_f1": 0.757
+    },
+    "lora_val_set": {
+      "accuracy": 0.801,
+      "macro_f1": 0.761,
+      "weighted_f1": 0.802
+    },
+    "lora_test_set": {
+      "accuracy": 0.8164,
+      "macro_f1": 0.7846,
+      "weighted_f1": 0.8155,
+      "per_class_f1": {
+        "Effector": 0.7647,
+        "Transcription factor / Regulator": 0.8931,
+        "Kinase / Signalling": 0.78,
+        "Protease": 0.7568,
+        "Cell wall / Carbohydrate-active": 0.8077,
+        "Transporter / Membrane": 0.8158,
+        "Secondary metabolite / Biosynthesis": 0.7442,
+        "Secretion system": 0.7143
+      }
+    }
+  },
+  "error_analysis": {
+    "n_misclassified": 83,
+    "top2_accuracy": 0.9027,
+    "high_conf_errors_reviewed": 40,
+    "phi_base_annotation_errors": 10,
+    "dual_function_proteins": 6,
+    "mixed_evidence": 15,
+    "model_errors": 9,
+    "corrected_accuracy_conservative": 0.8385,
+    "corrected_accuracy_liberal": 0.8518
+  },
+  "diversity_analysis": {
+    "conclusion": "Sequence diversity does not predict per-class F1. Kinase/Signalling confusion driven by functional annotation heterogeneity, not sequence diversity.",
+    "pearson_r_30pct": -0.281
+  },
+  "computational_efficiency": {
+    "gpu": "NVIDIA A100-SXM4-40GB",
+    "optimal_batch_size": 4,
+    "lora_peak_throughput_seq_per_s": 38.6,
+    "frozen_peak_throughput_seq_per_s": 44.9,
+    "throughput_overhead_pct": -13.9,
+    "lora_peak_memory_mb": 808.0,
+    "frozen_peak_memory_mb": 1384.0,
+    "fungal_genome_annotation_minutes": 5.2
+  },
+  "model": {
+    "base_model": "facebook/esm2_t30_150M_UR50D",
+    "lora_rank": 16,
+    "lora_alpha": 32,
+    "target_modules": [
+      "query",
+      "key",
+      "value",
+      "dense"
+    ]
+  }
+}
