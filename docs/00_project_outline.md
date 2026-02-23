@@ -1,24 +1,25 @@
 ### Goal
 
-To develop a high-throughput computational pipeline that classifies pathogen effectors using a fine-tuned Protein Language Model (pLM).
+To develop a high-throughput computational pipeline that classifies pathogen virulence genes using a fine-tuned Protein Language Model (pLM).
 
 ### Hypothesis
 
-Fine-tuning a pre-trained ESM-2 model on the PHI-base dataset will allow the model to capture effector-specific structural motifs and evolutionary signatures more accurately than traditional sequence-alignment methods (e.g. HMMer), enabling faster functional annotation of novel pathogen sequences into specific virulence classes.
+Fine-tuning a pre-trained ESM-2 model on PHI-base data will allow the model to capture functional sequence signatures more accurately than traditional sequence-alignment methods (e.g. HMMer), enabling faster functional annotation of novel pathogen sequences into biochemical classes such as protease, kinase, and effector.
 
 ### Rationale
 
-- **Structural Context:** ESM-2 captures latent structural information within its embeddings, which is critical for effector proteins that often lack primary sequence homology but share conserved 3D folds to manipulate host targets.
-- **Speed and Scalability:** Once fine-tuned, inference is significantly faster than AlphaFold2 for initial large-scale screening of newly sequenced pathogen genomes.
-- **Platform Fit:** A pLM-based classifier could serve as a high-throughput triage step for identifying high-priority virulence targets prior to experimental validation.
+- **Sequence-Function Relationship:** ESM-2 captures latent structural and evolutionary information within its embeddings, which is critical for classifying virulence genes where primary sequence homology is often low across distantly related pathogens but functional class is conserved.
+- **Speed and Scalability:** Once fine-tuned, inference is significantly faster than structure-based methods for initial large-scale screening of newly sequenced pathogen genomes.
+- **Platform Fit:** A pLM-based classifier could serve as a high-throughput triage step for prioritising virulence gene candidates prior to experimental validation, complementing existing tools like EffectorP that focus narrowly on effector prediction.
 
 ### Experimental Plan
 
-- **Data Curation**: Extract and clean sequences from the PHI-base dataset. Ensure balanced representation of the five core phenotype classes: loss of pathogenicity, reduced virulence, increased virulence, unaffected pathogenicity, and effector.    
-- **Prototyping**: Implement a JAX-based classification head on top of the frozen ESM-2 encoder to validate data loading and gradient flow.
-- **Fine-Tuning**: Execute full-parameter or LoRA (Low-Rank Adaptation) fine-tuning on an A100 GPU (Colab) to optimize weights for effector-specific motifs.
-- **Validation**: Compare model accuracy against the ground truth labels in a held-out test dataset and generate a confusion matrix to identify specific classification overlaps.
-- **Integration**: Transfer the finalised model weights and training logic to a Google Cloud Platform GCS Bucket and document the deployment via Vertex AI.
+- **Data Curation**: Extract and clean sequences from PHI-base. Map 4,137 free-text functional annotations to 8 biochemical classes (effector, protease, kinase/signalling, transcription factor/regulator, cell wall/carbohydrate-active, transporter/membrane, secondary metabolite/biosynthesis, secretion system) via keyword matching. Reduce redundancy using MMseqs2 clustering at 90% identity.
+- **Prototyping**: Implement a JAX-based classification head on top of the frozen ESM-2 encoder to validate data loading, embedding quality, and gradient flow.
+- **Fine-Tuning**: Apply LoRA (Low-Rank Adaptation) fine-tuning on an A100 GPU (Colab) to optimise weights for functional class discrimination across 8 virulence gene categories.
+- **Validation**: Evaluate model performance against held-out test data using per-class F1-scores and confusion matrices to identify classification overlaps between biochemically related classes.
+- **Integration**: Transfer finalised model weights and training logic to a Google Cloud Platform GCS Bucket and document deployment via Vertex AI.
+
 ### Key Literature
 
 **1. PHI-base**
