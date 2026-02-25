@@ -16,8 +16,8 @@ All results are from 5-fold stratified cross-validation on the training pool (4,
 |---|---|---|
 | Frozen ESM-2 150M | 0.698 ± 0.019 | 74.2% ± 0.8% |
 | Frozen ESM-2 650M | 0.733 ± 0.016 | 77.3% ± 1.1% |
-| LoRA ESM-2 150M | 0.742 ± 0.010 | — |
-| LoRA ESM-2 650M | 0.753 ± 0.008 | — |
+| LoRA ESM-2 150M | 0.742 ± 0.010 | 78.0 ± 0.8%|
+| LoRA ESM-2 650M | 0.753 ± 0.008 | 79.6 ± 0.7% |
 
 ### Per-Class F1 (Best Fold — LoRA Fine-Tuned)
 
