@@ -1,23 +1,38 @@
 model:
-  base_model: "facebook/esm2_t30_150M_UR50D"
-  hidden_dim: 640          # ESM-2 150M embedding dimension
-  num_classes: 8           # Number of functional classes
+  models:
+    small: "facebook/esm2_t30_150M_UR50D"
+    large: "facebook/esm2_t33_650M_UR50D"
+  hidden_dims:
+    small: 640    # ESM-2 150M embedding dimension
+    large: 1280   # ESM-2 650M embedding dimension
+  num_classes: 8
   dropout_rate: 0.1
 
 classification_head:
   layer_1_dim: 256
   layer_2_dim: 128
-  pooling: "mean"          # mean pooling over sequence length vs cls token
+  pooling: "mean"
 
 training:
   batch_size: 8
   learning_rate: 1.0e-4
   max_epochs: 50
   early_stopping_patience: 5
+  k_folds: 5
+
+hyperparameter_optimisation:
+  framework: "optuna"
+  n_trials: 50
+  search_space:
+    learning_rate: [1.0e-5, 1.0e-3]
+    dropout_rate: [0.0, 0.5]
+    layer_1_dim: [128, 512]
+    layer_2_dim: [64, 256]
+    batch_size: [4, 8, 16]
 
 memory:
   max_token_length: 1024
-  test_batch_sizes: [2, 4, 8, 16]   # for memory profiling
+  test_batch_sizes: [2, 4, 8, 16]
 
 paths:
   splits_dir: "data/splits"

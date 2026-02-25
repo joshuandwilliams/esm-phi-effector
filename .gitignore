@@ -211,3 +211,6 @@ data/checkpoints/lora_finetune/checkpoint-*/model.safetensors
 
 # Weights & Biases
 wandb/
+
+# Model Checkpoints (Now on GCS)
+data/checkpoints/
