@@ -2,46 +2,77 @@
 Fine-tuned ESM-2 protein language model for classifying pathogen virulence genes into functional biochemical classes.
 
 ## Overview
-This project develops a computational pipeline that classifies pathogen virulence genes from PHI-base into 8 functional classes (effector, protease, kinase/signalling, transcription factor/regulator, cell wall/carbohydrate-active, transporter/membrane, secondary metabolite/biosynthesis, and secretion system) using a fine-tuned ESM-2 protein language model with LoRA parameter-efficient fine-tuning.
+This project develops a computational pipeline that classifies pathogen virulence genes from PHI-base into 8 functional classes (Effector, Protease, Kinase / Signalling, Transcription factor / Regulator, Cell wall / Carbohydrate-active, Transporter / Membrane, Secondary metabolite / Biosynthesis, and Secretion system) using a fine-tuned ESM-2 protein language model with LoRA parameter-efficient fine-tuning.
 
 **Goal**: Replace traditional homology-based methods with faster, more scalable deep learning classification for functional annotation of novel pathogen sequences.
 
 ## Results
 
-| Metric | Frozen baseline | LoRA fine-tuned (val) | LoRA fine-tuned (test) |
-|---|---|---|---|
-| Accuracy | 75.2% | 80.1% | 80.1% |
-| Macro F1 | 0.711 | 0.761 | 0.757 |
-| Weighted F1 | 0.757 | 0.802 | 0.798 |
+All results are from 5-fold stratified cross-validation on the training pool (4,023 sequences). The best fold (fold 2) is reported for per-class metrics.
 
-Consistent val/test performance confirms genuine generalisation rather than overfitting.
+### Cross-Validation Summary
 
-**Per-class F1 (test set):**
+| Model | Macro F1 (mean ± std) | Accuracy (mean ± std) |
+|---|---|---|
+| Frozen ESM-2 150M | 0.698 ± 0.019 | 74.2% ± 0.8% |
+| Frozen ESM-2 650M | 0.733 ± 0.016 | 77.3% ± 1.1% |
+| LoRA ESM-2 150M | 0.742 ± 0.010 | — |
+| LoRA ESM-2 650M | 0.753 ± 0.008 | — |
 
-| Class | Frozen baseline | LoRA fine-tuned | Change |
-|---|---|---|---|
-| Effector | 0.778 | 0.765 | -0.013 |
-| Transcription factor / Regulator | 0.827 | 0.893 | +0.066 |
-| Kinase / Signalling | 0.745 | 0.780 | +0.035 |
-| Protease | 0.611 | 0.757 | +0.146 |
-| Cell wall / Carbohydrate-active | 0.786 | 0.808 | +0.022 |
-| Transporter / Membrane | 0.667 | 0.816 | +0.149 |
-| Secondary metabolite / Biosynthesis | 0.618 | 0.744 | +0.126 |
-| Secretion system | 0.654 | 0.714 | +0.060 |
+### Per-Class F1 (Best Fold — LoRA Fine-Tuned)
 
-**Key findings:**
-- LoRA fine-tuning improves macro F1 by 0.050 over frozen ESM-2 embeddings, with the largest gains in the weakest baseline classes (Protease, Transporter/Membrane, Secondary metabolite/Biosynthesis)
-- Manual literature review of 40 high-confidence misclassifications found ~25% reflect PHI-base annotation errors rather than genuine model failures; correcting these raises estimated true accuracy to 82–84%
-- Kinase/Signalling acts as a confusion gravity well across all classes — within-class sequence diversity analysis at 30–50% identity thresholds rules out sequence heterogeneity as the cause, pointing instead to the class definition being too functionally broad
-- At optimal batch size 4 on an A100, the LoRA model achieves 38.6 sequences/second (13.9% slower than frozen baseline) while using 42% less GPU memory (808 MB vs 1,384 MB); a full fungal pathogen proteome (~12,000 proteins) can be annotated in ~5 minutes
+| Class | 150M (small) | 650M (large) |
+|---|---|---|
+| Effector | 0.759 | 0.783 |
+| Transcription factor / Regulator | 0.873 | 0.898 |
+| Kinase / Signalling | 0.750 | 0.802 |
+| Protease | 0.829 | 0.800 |
+| Cell wall / Carbohydrate-active | 0.725 | 0.755 |
+| Transporter / Membrane | 0.755 | 0.769 |
+| Secondary metabolite / Biosynthesis | 0.720 | 0.708 |
+| Secretion system | 0.636 | 0.604 |
+
+### Key Findings
+
+- **LoRA fine-tuning improves both models over frozen baselines**, with the small model gaining more (+0.044 macro F1) than the large model (+0.020), narrowing the gap between variants from 0.035 to 0.011.
+- **Top-2 accuracy reaches ~89% for both models**, with 46–50% of misclassifications having the correct class as the second prediction (vs 14.3% random chance), indicating boundary ambiguity rather than arbitrary errors.
+- **The dominant confusion axis is Transcription factor / Regulator ↔ Kinase / Signalling** (21 cases in both models), reflecting genuine biological overlap in two-component signal transduction systems identified during data curation.
+- **Effector ↔ Secretion system confusion is structurally expected** — effectors are delivered by secretion systems, so sequence-level similarity reflects real biological coupling.
+- **Truncation is not a meaningful error source** — only 5.5% of sequences exceed the 1,022 AA token limit, with 97.7% accuracy on truncated sequences vs ~78–80% on full-length.
+- **~25% of apparent errors likely reflect PHI-base annotation ambiguity** rather than genuine model failures, based on cross-class identity analysis during data curation.
+
+## Dataset
+
+Starting from 14,028 PHI-base records, the curation pipeline retained 4,458 unique, non-redundant sequences across 8 functional classes (31.8% of original records). The dataset was split 90/10 into a training pool (4,023 sequences) and held-out test set (447 sequences).
+
+| Class | Train | Test |
+|---|---|---|
+| Transcription factor / Regulator | 1,383 | 154 |
+| Kinase / Signalling | 888 | 99 |
+| Effector | 588 | 65 |
+| Transporter / Membrane | 330 | 37 |
+| Cell wall / Carbohydrate-active | 248 | 27 |
+| Secondary metabolite / Biosynthesis | 225 | 25 |
+| Secretion system | 182 | 20 |
+| Protease | 179 | 20 |
+
+Key curation steps: duplicate removal, quality filtering (50–1,500 AA, standard amino acids), MMseqs2 clustering at 90% identity for redundancy reduction, and stratified train/test splitting.
 
 ## Repository Structure
 This project is designed to be executed in Google Colab.
-- `notebooks/`: Sequential Colab notebooks for data curation, prototyping, fine-tuning, and validation.
+- `notebooks/`: Sequential Colab notebooks for data curation, prototyping, and fine-tuning.
 - `src/`: Installable Python modules used by the notebooks.
 - `configs/`: YAML configuration files for data, model, and training parameters.
 - `requirements.txt`: Project dependencies.
 - `setup.py`: Package installation script.
+
+### Notebooks
+
+| Notebook | Description |
+|---|---|
+| `01_data_curation.ipynb` | PHI-base download, annotation mapping to 8 classes, quality filtering, MMseqs2 redundancy reduction, train/test splitting, within-class diversity analysis |
+| `02_prototyping_jax.ipynb` | JAX/Flax classification head on frozen ESM-2 embeddings, 5-fold CV baseline for both 150M and 650M variants, error analysis, memory profiling |
+| `03_finetuning_lora.ipynb` | LoRA fine-tuning of both ESM-2 variants with HuggingFace Trainer, 5-fold CV, W&B logging, error analysis, checkpoints saved to GCS |
 
 ## Quick Start (Google Colab)
 ```python
@@ -57,17 +88,16 @@ This project is designed to be executed in Google Colab.
 !pip install -e .
 
 # 4. Open the notebooks/ directory and execute sequentially:
-#    01_data_curation.ipynb → 02_prototyping_jax.ipynb → 03_finetuning_lora.ipynb → 04_validation.ipynb
+#    01_data_curation.ipynb → 02_prototyping_jax.ipynb → 03_finetuning_lora.ipynb
 ```
 
 ## Project Status
-**Complete**
-- [x] Project planning and literature review
-- [x] Data curation (PHI-base dataset) — 4,518 sequences across 8 functional classes
-- [x] Model prototyping (frozen ESM-2 + JAX classification head, 75.2% accuracy)
-- [x] Fine-tuning with LoRA on A100 GPU (80.1% accuracy, 0.761 macro F1)
-- [x] Validation and benchmarking (test set, error analysis, diversity analysis, efficiency profiling)
-- [ ] Deployment to GCP
+
+- [x] Data curation (PHI-base dataset) — 4,458 sequences across 8 functional classes
+- [x] Model prototyping (frozen ESM-2 + JAX classification head)
+- [x] Fine-tuning with LoRA on A100 GPU
+- [ ] Test set evaluation and held-out validation
+- [ ] Efficiency profiling and deployment benchmarking
 
 ## Citation
 This project builds on:

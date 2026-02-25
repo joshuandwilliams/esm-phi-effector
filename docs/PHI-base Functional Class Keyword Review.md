@@ -290,7 +290,6 @@ These proteins all participate in reactive oxygen species (ROS) metabolism. In p
 ### Keywords to ADD:
 
 | Keyword | Class | Reason |
-
 |---------|-------|--------|
 | `metalloprotease` | Protease | Alternative spelling |
 | `dna methyltransferase` | TF / Regulator | Epigenetic regulation, must be caught before generic `methyltransferase` in Sec. metabolite |

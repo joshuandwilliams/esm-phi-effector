@@ -18,18 +18,14 @@ target_mapping:
 filtering:
   min_seq_length: 50
   max_seq_length: 1500
-  max_ambiguity_fraction: 0.05
+  max_ambiguity_fraction: 0.0
+  max_poly_x_run: 10
+  max_single_aa_fraction: 0.35
 
 clustering:
-  tool: "mmseqs2"
   identity_threshold: 0.9
   coverage_threshold: 0.8
 
-tokenization:
-  esm_model: "facebook/esm2_t30_150M_UR50D"
-  max_token_length: 1024
-
 splitting:
   test_size: 0.1
-  val_size: 0.1
   random_seed: 42
