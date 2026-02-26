@@ -213,4 +213,8 @@ data/checkpoints/lora_finetune/checkpoint-*/model.safetensors
 wandb/
 
 # Model Checkpoints (Now on GCS)
+data/checkpoints/*.gdoc
+*.gsheet
+*.gslides
+data/processed/
 data/checkpoints/
