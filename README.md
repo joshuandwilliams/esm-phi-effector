@@ -61,7 +61,7 @@ Key curation steps: duplicate removal, quality filtering (50–1,500 AA, standar
 
 ## Repository Structure
 This project is designed to be executed in Google Colab.
-- `notebooks/`: Sequential Colab notebooks for data curation, prototyping, fine-tuning, and validation.
+- `notebooks/`: Sequential Colab notebooks for data curation, prototyping, and fine-tuning.
 - `src/`: Installable Python modules used by the notebooks.
 - `configs/`: YAML configuration files for data, model, and training parameters.
 - `requirements.txt`: Project dependencies.
@@ -90,7 +90,7 @@ This project is designed to be executed in Google Colab.
 !pip install -e .
 
 # 4. Open the notebooks/ directory and execute sequentially:
-#    01_data_curation.ipynb → 02_prototyping_jax.ipynb → 03_finetuning_lora.ipynb → 04_validation.ipynb
+#    01_data_curation.ipynb → 02_prototyping_jax.ipynb → 03_finetuning_lora.ipynb
 ```
 
 ## Project Status
