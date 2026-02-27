@@ -5,12 +5,12 @@ PHI:590	PHI:12048	98.6	Kinase / Signalling	Effector	Kinase / Signalling	731	shik
 PHI:12048	PHI:590	98.6	Effector	Kinase / Signalling	Effector	299	effector protein	Kinase / Signalling	731	shikimate kinase
 PHI:704	PHI:2687	95.8	Kinase / Signalling	Transcription factor / Regulator	Kinase / Signalling	87	RNA binding protein that modulates gene expression post-transcription	Transcription factor / Regulator	102	regulators of systemic infection
 PHI:2687	PHI:704	93.2	Transcription factor / Regulator	Kinase / Signalling	Transcription factor / Regulator	102	regulators of systemic infection	Kinase / Signalling	87	RNA binding protein that modulates gene expression post-transcription
-PHI:10254	PHI:2489	90.3	Transcription factor / Regulator	Kinase / Signalling	Transcription factor / Regulator	61	post-transcriptional regulator	Kinase / Signalling	70	RNA-binding protein
 PHI:2489	PHI:10254	90.3	Kinase / Signalling	Transcription factor / Regulator	Kinase / Signalling	70	RNA-binding protein	Transcription factor / Regulator	61	post-transcriptional regulator
+PHI:10254	PHI:2489	90.3	Transcription factor / Regulator	Kinase / Signalling	Transcription factor / Regulator	61	post-transcriptional regulator	Kinase / Signalling	70	RNA-binding protein
 PHI:4100	PHI:3056	89.8	Kinase / Signalling	Transcription factor / Regulator	Kinase / Signalling	453	quorum sensing	Transcription factor / Regulator	453	upstream negative regulator of smcR
 PHI:3056	PHI:4100	89.4	Transcription factor / Regulator	Kinase / Signalling	Transcription factor / Regulator	453	upstream negative regulator of smcR	Kinase / Signalling	453	quorum sensing
-PHI:3731	PHI:124125	88.8	Kinase / Signalling	Transcription factor / Regulator	Kinase / Signalling	171	controller in the quorum sensing	Transcription factor / Regulator	171	regulatory factor
 PHI:124125	PHI:3731	88.8	Transcription factor / Regulator	Kinase / Signalling	Transcription factor / Regulator	171	regulatory factor	Kinase / Signalling	171	controller in the quorum sensing
+PHI:3731	PHI:124125	88.8	Kinase / Signalling	Transcription factor / Regulator	Kinase / Signalling	171	controller in the quorum sensing	Transcription factor / Regulator	171	regulatory factor
 PHI:11447	PHI:2489	88.4	Transcription factor / Regulator	Kinase / Signalling	Transcription factor / Regulator	84	carbon storage regulator	Kinase / Signalling	70	RNA-binding protein
 PHI:2489	PHI:11447	88.4	Kinase / Signalling	Transcription factor / Regulator	Kinase / Signalling	70	RNA-binding protein	Transcription factor / Regulator	84	carbon storage regulator
 PHI:2687	PHI:9566	86.5	Transcription factor / Regulator	Kinase / Signalling	Transcription factor / Regulator	102	regulators of systemic infection	Kinase / Signalling	104	RNA-binding protein
@@ -18,28 +18,28 @@ PHI:9566	PHI:2687	86.5	Kinase / Signalling	Transcription factor / Regulator	Kina
 PHI:4100	PHI:708	86.2	Kinase / Signalling	Transcription factor / Regulator	Kinase / Signalling	453	quorum sensing	Transcription factor / Regulator	455	quorum-sensing regulator
 PHI:708	PHI:4100	86.2	Transcription factor / Regulator	Kinase / Signalling	Transcription factor / Regulator	455	quorum-sensing regulator	Kinase / Signalling	453	quorum sensing
 PHI:3107	PHI:1137	85.8	Kinase / Signalling	Effector	Kinase / Signalling	427	histidine kinase	Effector	420	two component sensor kinase activity required for Ax21 (synonym: AvrXa21) activity
-PHI:2847	PHI:123118	85.6	Cell wall / Carbohydrate-active	Kinase / Signalling	Cell wall / Carbohydrate-active	377	polygalacturonase	Kinase / Signalling	380	PG-inhibiting proteins
 PHI:123118	PHI:2847	85.6	Kinase / Signalling	Cell wall / Carbohydrate-active	Kinase / Signalling	380	PG-inhibiting proteins	Cell wall / Carbohydrate-active	377	polygalacturonase
 PHI:1137	PHI:3107	85.6	Effector	Kinase / Signalling	Effector	420	two component sensor kinase activity required for Ax21 (synonym: AvrXa21) activity	Kinase / Signalling	427	histidine kinase
+PHI:2847	PHI:123118	85.6	Cell wall / Carbohydrate-active	Kinase / Signalling	Cell wall / Carbohydrate-active	377	polygalacturonase	Kinase / Signalling	380	PG-inhibiting proteins
 PHI:123648	PHI:123381	85.0	Transcription factor / Regulator	Transporter / Membrane	Transcription factor / Regulator	462	regulatory protein	Transporter / Membrane	462	nitrate/nitrite transporter
 PHI:123381	PHI:123648	85.0	Transporter / Membrane	Transcription factor / Regulator	Transporter / Membrane	462	nitrate/nitrite transporter	Transcription factor / Regulator	462	regulatory protein
-PHI:11382	PHI:7042	84.4	Kinase / Signalling	Effector	Kinase / Signalling	292	catalase	Effector	296	effector protein
 PHI:7042	PHI:11382	84.4	Effector	Kinase / Signalling	Effector	296	effector protein	Kinase / Signalling	292	catalase
-PHI:7478	PHI:123644	84.3	Transporter / Membrane	Transcription factor / Regulator	Transporter / Membrane	319	periplasmic enterobactin transporter	Transcription factor / Regulator	318	regulatory protein
+PHI:11382	PHI:7042	84.4	Kinase / Signalling	Effector	Kinase / Signalling	292	catalase	Effector	296	effector protein
 PHI:123644	PHI:7478	84.3	Transcription factor / Regulator	Transporter / Membrane	Transcription factor / Regulator	318	regulatory protein	Transporter / Membrane	319	periplasmic enterobactin transporter
-PHI:12135	PHI:12136	84.2	Kinase / Signalling	Secretion system	Kinase / Signalling	96	pore-forming protein	Secretion system	96	type VII secretion system protein
+PHI:7478	PHI:123644	84.3	Transporter / Membrane	Transcription factor / Regulator	Transporter / Membrane	319	periplasmic enterobactin transporter	Transcription factor / Regulator	318	regulatory protein
 PHI:12136	PHI:12135	84.2	Secretion system	Kinase / Signalling	Secretion system	96	type VII secretion system protein	Kinase / Signalling	96	pore-forming protein
+PHI:12135	PHI:12136	84.2	Kinase / Signalling	Secretion system	Kinase / Signalling	96	pore-forming protein	Secretion system	96	type VII secretion system protein
 PHI:8674	PHI:2687	84.0	Kinase / Signalling	Transcription factor / Regulator	Kinase / Signalling	84	RNA-binding protein Hfq	Transcription factor / Regulator	102	regulators of systemic infection
-PHI:12093	PHI:6219	83.2	Transcription factor / Regulator	Kinase / Signalling	Transcription factor / Regulator	137	DNA-binding protein	Kinase / Signalling	135	histone-like nucleoid structuring protein
 PHI:6219	PHI:12093	83.2	Kinase / Signalling	Transcription factor / Regulator	Kinase / Signalling	135	histone-like nucleoid structuring protein	Transcription factor / Regulator	137	DNA-binding protein
+PHI:12093	PHI:6219	83.2	Transcription factor / Regulator	Kinase / Signalling	Transcription factor / Regulator	137	DNA-binding protein	Kinase / Signalling	135	histone-like nucleoid structuring protein
 PHI:2688	PHI:2703	82.9	Kinase / Signalling	Effector	Kinase / Signalling	660	novel E3 ubiquitin ligase	Effector	497	effector protein
 PHI:124494	PHI:4075	82.7	Transcription factor / Regulator	Effector	Transcription factor / Regulator	119	regulator	Effector	116	virulence factor
-PHI:7542	PHI:123642	82.7	Transporter / Membrane	Transcription factor / Regulator	Transporter / Membrane	330	ferric enterobactin transport system permease	Transcription factor / Regulator	330	regulatory protein
 PHI:123642	PHI:7542	82.7	Transcription factor / Regulator	Transporter / Membrane	Transcription factor / Regulator	330	regulatory protein	Transporter / Membrane	330	ferric enterobactin transport system permease
 PHI:4075	PHI:124494	82.7	Effector	Transcription factor / Regulator	Effector	116	virulence factor	Transcription factor / Regulator	119	regulator
+PHI:7542	PHI:123642	82.7	Transporter / Membrane	Transcription factor / Regulator	Transporter / Membrane	330	ferric enterobactin transport system permease	Transcription factor / Regulator	330	regulatory protein
 PHI:2703	PHI:2688	82.6	Effector	Kinase / Signalling	Effector	497	effector protein	Kinase / Signalling	660	novel E3 ubiquitin ligase
-PHI:343	PHI:2461	82.1	Kinase / Signalling	Transcription factor / Regulator	Kinase / Signalling	510	G-protein signalling molecule	Transcription factor / Regulator	517	regulators of G-protein signalling
 PHI:2461	PHI:343	82.1	Transcription factor / Regulator	Kinase / Signalling	Transcription factor / Regulator	517	regulators of G-protein signalling	Kinase / Signalling	510	G-protein signalling molecule
+PHI:343	PHI:2461	82.1	Kinase / Signalling	Transcription factor / Regulator	Kinase / Signalling	510	G-protein signalling molecule	Transcription factor / Regulator	517	regulators of G-protein signalling
 PHI:8808	PHI:6583	81.7	Protease	Secretion system	Protease	784	ATP-dependent protease	Secretion system	786	protease regulates biofilm formation, motility, virulence, and the type VI secretion system
 PHI:6583	PHI:8808	81.7	Secretion system	Protease	Secretion system	786	protease regulates biofilm formation, motility, virulence, and the type VI secretion system	Protease	784	ATP-dependent protease
 PHI:11738	PHI:2687	81.3	Kinase / Signalling	Transcription factor / Regulator	Kinase / Signalling	99	RNA-binding protein	Transcription factor / Regulator	102	regulators of systemic infection

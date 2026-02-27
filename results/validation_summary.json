@@ -1,7 +1,7 @@
 {
   "project": "esm-phi-effector",
   "description": "LoRA fine-tuned ESM-2 (150M + 650M) for PHI-base functional class classification",
-  "timestamp": "2026-02-26 11:19:32",
+  "timestamp": "2026-02-27 15:15:30",
   "dataset": {
     "source": "PHI-base",
     "total_seqs": 4470,
@@ -102,11 +102,11 @@
     "small": {
       "gpu": "NVIDIA A100-SXM4-40GB",
       "lora_optimal_batch_size": 4,
-      "lora_seq_per_s": 36.0,
+      "lora_seq_per_s": 36.1,
       "lora_peak_memory_mb": 3384.0,
       "frozen_optimal_batch_size": 4,
       "frozen_seq_per_s": 41.9,
-      "frozen_peak_memory_mb": 3970.0
+      "frozen_peak_memory_mb": 4528.0
     },
     "large": {
       "gpu": "NVIDIA A100-SXM4-40GB",
@@ -115,7 +115,7 @@
       "lora_peak_memory_mb": 3386.0,
       "frozen_optimal_batch_size": 1,
       "frozen_seq_per_s": 17.3,
-      "frozen_peak_memory_mb": 5852.0
+      "frozen_peak_memory_mb": 6402.0
     }
   },
   "error_analysis": {
